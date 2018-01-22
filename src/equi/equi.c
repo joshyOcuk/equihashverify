@@ -40,7 +40,7 @@ static void expandArray(const unsigned char *in, const size_t in_len,
     const size_t out_width = (bit_len + 7) / 8 + byte_pad;
     assert(out_len == 8 * out_width * in_len / bit_len);
 
-    const uint32_t bit_len_mask = ((uint64_t)1 << bit_len) - 1;
+    const uint64_t bit_len_mask = ((uint64_t)1 << bit_len) - 1;
 
     // The acc_bits least-significant bits of acc_value represent a bit sequence
     // in big-endian order.
