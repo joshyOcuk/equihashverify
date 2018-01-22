@@ -23,7 +23,7 @@ static void digestInit(crypto_generichash_blake2b_state *S, const int n, const i
   uint32_t le_N = htole32(n);
   uint32_t le_K = htole32(k);
   unsigned char personalization[crypto_generichash_blake2b_PERSONALBYTES] = {};
-  memcpy(personalization, "ZcashPoW", 9);
+  memcpy(personalization, "ZERO_PoW", 8);
   memcpy(personalization + 8,  &le_N, 4);
   memcpy(personalization + 12, &le_K, 4);
   crypto_generichash_blake2b_init_salt_personal(S,
@@ -35,17 +35,17 @@ static void expandArray(const unsigned char *in, const size_t in_len,
     const size_t bit_len, const size_t byte_pad)
 {
     assert(bit_len >= 8);
-    assert(8 * sizeof(uint32_t) >= 7 + bit_len);
+    assert(8 * sizeof(uint64_t) >= 7 + bit_len);
 
     const size_t out_width = (bit_len + 7) / 8 + byte_pad;
     assert(out_len == 8 * out_width * in_len / bit_len);
 
-    const uint32_t bit_len_mask = ((uint32_t)1 << bit_len) - 1;
+    const uint32_t bit_len_mask = ((uint64_t)1 << bit_len) - 1;
 
     // The acc_bits least-significant bits of acc_value represent a bit sequence
     // in big-endian order.
     size_t acc_bits = 0;
-    uint32_t acc_value = 0;
+    uint64_t acc_value = 0;
 
     size_t j = 0;
     for (size_t i = 0; i < in_len; i++) {
