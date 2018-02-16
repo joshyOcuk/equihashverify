@@ -102,7 +102,7 @@ bool verifyEH(const char *hdr, const char *soln) {
   const int hashOutput = indicesPerHashOutput * n / 8;
   const int equihashSolutionSize = (1 << k) * (n / (k + 1) + 1) / 8;
   const int solnr = 1 << k;
-  uint32_t indices[512];
+  uint32_t indices[128];
 
   crypto_generichash_blake2b_state state;
   digestInit(&state, n, k);
