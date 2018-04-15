@@ -108,7 +108,7 @@ bool verifyEH(const char *hdr, const char *soln) {
   digestInit(&state, n, k);
   crypto_generichash_blake2b_update(&state, hdr, 140);
 
-  expandArray(soln, equihashSolutionSize, (char *)&indices, sizeof(indices), collisionBitLength + 1, 1);
+  expandArray(soln, equihashSolutionSize, (char *)&indices, sizeof(indices), collisionBitLength + 1, 0);
 
   uint8_t vHash[hashLength];
   memset(vHash, 0 , sizeof(vHash));
