@@ -1,5 +1,7 @@
-# equihashverify
-nodejs native binding to check for valid Equihash solutions
+!deprecated use https://github.com/joshyOcuk/equihashverify-192_7
+
+
+nodejs native binding to check for kindof valid Equihash solutions
 
 ##usage:
 ````javascript
